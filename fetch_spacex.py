@@ -18,8 +18,8 @@ def download_picture(picture_url, picture_endpoint):
             file.write(response.content)
 
 
-def fetch_spacex_launch(spacex_launch_url, picture_endpoint):
-    response = requests.get(spacex_launch_url)
+def fetch_spacex_launch(spacex_launch_number, picture_endpoint):
+    response = requests.get(f"https://api.spacexdata.com/v3/launches/{spacex_launch_number}")
     response.raise_for_status()
     links_to_spacex_imgs = response.json()["links"]["flickr_images"]
     for link in links_to_spacex_imgs:

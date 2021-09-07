@@ -26,13 +26,14 @@ def get_format_from_link(link):
     return splited_tail[-1]
 
 
-def fetch_apods_nasa(apod_nasa_link, picture_endpoint,
-                     nasa_api_key, how_much_apods_try_to_download):
+def fetch_apods_nasa(picture_endpoint,
+                     nasa_api_key):
     payload = {
         "api_key": nasa_api_key,
-        "count": how_much_apods_try_to_download
+        "count": "50"
     }
-    response = requests.get(apod_nasa_link, params=payload)
+    response = requests.get("https://api.nasa.gov/planetary/apod",
+                            params=payload)
     response.raise_for_status()
 
     for apod_features in response.json():
@@ -46,12 +47,12 @@ def form_link_on_epic_nasa(image_name, date, nasa_api_key):
     return f"https://api.nasa.gov/EPIC/archive/natural/{year}/{month}/{day}/png/{image_name}.png?api_key={nasa_api_key}"
 
 
-def fetch_epics_nasa(epic_nasa_link, picture_endpoint,
+def fetch_epics_nasa(picture_endpoint,
                      nasa_api_key, date_for_epic):
     payload = {
         "api_key": nasa_api_key
     }
-    response = requests.get(f"{epic_nasa_link}/{date_for_epic}",
+    response = requests.get(f"https://api.nasa.gov/EPIC/api/natural/date/{date_for_epic}",
                             params=payload)
     response.raise_for_status()
     for epic_features in response.json():
