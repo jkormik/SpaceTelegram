@@ -10,8 +10,9 @@ def send_imgs_to_tg(astrobot_api_key_tg, astro_chat_id_tg,
                     picture_endpoint):
     bot = telegram.Bot(astrobot_api_key_tg)
     for picture in os.listdir(picture_endpoint):
-        bot.send_document(chat_id=astro_chat_id_tg,
-                          document=open(f"{picture_endpoint}/{picture}", "rb"))
+        with open(f"{picture_endpoint}/{picture}", "rb") as document:
+            bot.send_document(chat_id=astro_chat_id_tg,
+                              document=document)
         time.sleep(86400)
 
 
