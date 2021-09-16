@@ -1,25 +1,5 @@
 import requests
-import os
-from urllib.parse import urlparse, unquote
-
-
-def download_picture(picture_url, picture_endpoint):
-    unquoted = unquote(picture_url)
-    parsed = urlparse(unquoted)
-    splited_path = os.path.split(parsed.path)
-    filename = splited_path[-1]
-    response = requests.get(picture_url)
-    response.raise_for_status()
-    with open(picture_endpoint+"/"+filename, "wb") as file:
-        file.write(response.content)
-
-
-def get_format_from_link(link):
-    unquoted = unquote(link)
-    parsed = urlparse(unquoted)
-    splited_path = os.path.split(parsed.path)
-    splited_tail = os.path.splitext(splited_path[-1])
-    return splited_tail[-1]
+from aiding_functions import download_picture, get_format_from_link
 
 
 def fetch_apods_nasa(picture_endpoint,

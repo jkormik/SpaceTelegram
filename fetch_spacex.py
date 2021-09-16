@@ -1,17 +1,5 @@
 import requests
-import os
-from urllib.parse import urlparse, unquote
-
-
-def download_picture(picture_url, picture_endpoint):
-    unquoted = unquote(picture_url)
-    parsed = urlparse(unquoted)
-    splited_path = os.path.split(parsed.path)
-    filename = splited_path[-1]
-    response = requests.get(picture_url)
-    response.raise_for_status()
-    with open(f"{picture_endpoint}/{filename}", "wb") as file:
-        file.write(response.content)
+from aiding_functions import download_picture, get_format_from_link
 
 
 def fetch_spacex_launch(spacex_launch_number, picture_endpoint):
@@ -22,11 +10,3 @@ def fetch_spacex_launch(spacex_launch_number, picture_endpoint):
         format_from_link = get_format_from_link(link)
         if format_from_link in (".jpg", ".png"):
             download_picture(link, picture_endpoint)
-
-
-def get_format_from_link(link):
-    unquoted = unquote(link)
-    parsed = urlparse(unquoted)
-    splited_path = os.path.split(parsed.path)
-    splited_tail = os.path.splitext(splited_path[-1])
-    return splited_tail[-1]
