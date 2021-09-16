@@ -5,17 +5,15 @@ from urllib.parse import urlparse, unquote
 
 
 def download_picture(picture_url, picture_endpoint):
-    format_from_link = get_format_from_link(picture_url)
-    if format_from_link == ".jpg" or format_from_link == ".png":
-        unquoted = unquote(picture_url)
-        parsed = urlparse(unquoted)
-        splited_path = os.path.split(parsed.path)
-        filename = splited_path[-1]
-        response = requests.get(picture_url)
-        response.raise_for_status()
-        pathlib.Path(picture_endpoint).mkdir(exist_ok=True)
-        with open(picture_endpoint+"/"+filename, "wb") as file:
-            file.write(response.content)
+    unquoted = unquote(picture_url)
+    parsed = urlparse(unquoted)
+    splited_path = os.path.split(parsed.path)
+    filename = splited_path[-1]
+    response = requests.get(picture_url)
+    response.raise_for_status()
+    pathlib.Path(picture_endpoint).mkdir(exist_ok=True)
+    with open(picture_endpoint+"/"+filename, "wb") as file:
+        file.write(response.content)
 
 
 def get_format_from_link(link):
@@ -39,7 +37,9 @@ def fetch_apods_nasa(picture_endpoint,
     for apod_features in response.json():
         if apod_features["media_type"] == "image":
             picture_link = apod_features["url"]
-            download_picture(picture_link, picture_endpoint)
+            format_from_link = get_format_from_link(picture_link)
+            if format_from_link in (".jpg", ".png"):
+                download_picture(picture_link, picture_endpoint)
 
 
 def form_link_on_epic_nasa(image_name, date, nasa_api_key):
