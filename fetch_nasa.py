@@ -1,5 +1,4 @@
 import requests
-import pathlib
 import os
 from urllib.parse import urlparse, unquote
 
@@ -11,7 +10,6 @@ def download_picture(picture_url, picture_endpoint):
     filename = splited_path[-1]
     response = requests.get(picture_url)
     response.raise_for_status()
-    pathlib.Path(picture_endpoint).mkdir(exist_ok=True)
     with open(picture_endpoint+"/"+filename, "wb") as file:
         file.write(response.content)
 

@@ -4,6 +4,7 @@ import telegram
 import time
 from fetch_nasa import fetch_epics_nasa, fetch_apods_nasa
 from fetch_spacex import fetch_spacex_launch
+import pathlib
 
 
 def send_imgs_to_tg(astrobot_api_key_tg, astro_chat_id_tg,
@@ -26,6 +27,8 @@ def main():
     picture_endpoint = os.getenv("WHERE_TO_PUT_PICTURES",
                                  f"{os.getcwd()}/images")
     date_for_epic = os.getenv("DATE_FOR_EPIC", "2018-08-15")
+
+    pathlib.Path(picture_endpoint).mkdir(exist_ok=True)
 
     fetch_spacex_launch(spacex_launch_number, picture_endpoint)
     fetch_epics_nasa(picture_endpoint,
