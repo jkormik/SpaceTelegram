@@ -22,7 +22,7 @@ def fetch_spacex_launch(spacex_launch_number, picture_endpoint):
     links_to_spacex_imgs = response.json()["links"]["flickr_images"]
     for link in links_to_spacex_imgs:
         format_from_link = get_format_from_link(link)
-        if format_from_link == ".jpg" or format_from_link == ".png":
+        if format_from_link in (".jpg", ".png"):
             download_picture(link, picture_endpoint)
 
 
