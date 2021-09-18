@@ -20,9 +20,9 @@ def fetch_apods_nasa(picture_endpoint,
                 download_picture(picture_link, picture_endpoint)
 
 
-def form_link_on_epic_nasa(image_name, date, nasa_api_key):
+def form_link_on_epic_nasa(image_name, date):
     year, month, day = date.split("-")
-    return f"https://api.nasa.gov/EPIC/archive/natural/{year}/{month}/{day}/png/{image_name}.png?api_key={nasa_api_key}"
+    return f"https://api.nasa.gov/EPIC/archive/natural/{year}/{month}/{day}/png/{image_name}.png"
 
 
 def fetch_epics_nasa(picture_endpoint,
@@ -35,5 +35,5 @@ def fetch_epics_nasa(picture_endpoint,
     response.raise_for_status()
     for epic_features in response.json():
         link_to_epic = form_link_on_epic_nasa(epic_features["image"],
-                                              date_for_epic, nasa_api_key)
-        download_picture(link_to_epic, picture_endpoint)
+                                              date_for_epic)
+        download_picture(link_to_epic, picture_endpoint, api_key=nasa_api_key)
