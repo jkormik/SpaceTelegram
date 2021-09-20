@@ -8,10 +8,10 @@ import pathlib
 
 
 def send_imgs_to_tg(astrobot_api_key_tg, astro_chat_id_tg,
-                    picture_endpoint):
+                    picture_path):
     bot = telegram.Bot(astrobot_api_key_tg)
-    for picture in os.listdir(picture_endpoint):
-        with open(f"{picture_endpoint}/{picture}", "rb") as document:
+    for picture in os.listdir(picture_path):
+        with open(f"{picture_path}/{picture}", "rb") as document:
             bot.send_document(chat_id=astro_chat_id_tg,
                               document=document)
         time.sleep(86400)
@@ -24,18 +24,18 @@ def main():
     astro_chat_id_tg = os.getenv("ASTRO_CHAT_ID_TG")
 
     spacex_launch_number = os.getenv("SPACEX_LAUNCH_NUMBER", "14")
-    picture_endpoint = os.getenv("WHERE_TO_PUT_PICTURES",
+    picture_path = os.getenv("WHERE_TO_PUT_PICTURES",
                                  f"{os.getcwd()}/images")
     date_for_epic = os.getenv("DATE_FOR_EPIC", "2018-08-15")
 
-    pathlib.Path(picture_endpoint).mkdir(exist_ok=True)
+    pathlib.Path(picture_path).mkdir(exist_ok=True)
 
-    fetch_spacex_launch(spacex_launch_number, picture_endpoint)
-    fetch_epics_nasa(picture_endpoint,
+    fetch_spacex_launch(spacex_launch_number, picture_path)
+    fetch_epics_nasa(picture_path,
                      nasa_api_key, date_for_epic)
-    fetch_apods_nasa(picture_endpoint, nasa_api_key)
+    fetch_apods_nasa(picture_path, nasa_api_key)
     send_imgs_to_tg(astrobot_api_key_tg, astro_chat_id_tg,
-                    picture_endpoint)
+                    picture_path)
 
 
 if __name__ == "__main__":

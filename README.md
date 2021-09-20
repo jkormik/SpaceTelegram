@@ -20,7 +20,7 @@ You can get *Telegram Bot HTTP API Access Token* via [BotFather in Telegram](htt
 
 In `.env` you may configure:
 
-* *An endpoint path of downloaded via API pictures.* This value should be assigned to `WHERE_TO_PUT_PICTURES ` in `.env` and looks something like this - 'F:/Barneby/Desktop/images' (string). By default pictures are downloaded to the directory where `main.py` file is;
+* *A path to downloaded via API pictures.* This value should be assigned to `WHERE_TO_PUT_PICTURES ` in `.env` and looks something like this - 'F:/Barneby/Desktop/images' (string). By default pictures are downloaded to the directory where `main.py` file is;
 * *A number of SpaceX launch of chose.* This value should be assigned to `LINK_TO_SPACEX_LAUNCH` in `.env` and looks something like this - `14` (string). By default it is 14th launch;
 * *A date on which natural color imagery (EPIC) was made.* This value should be assigned to `DATE_FOR_EPIC` in `.env` and looks something like this - `2018-08-15` (string in given format). By default it is 2018-08-15.
 
