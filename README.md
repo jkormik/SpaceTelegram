@@ -12,11 +12,11 @@ You can get **Nasa API Key** [here](https://api.nasa.gov/).
 
 You can get *Telegram Bot HTTP API Access Token* via [BotFather in Telegram](https://telegram.im/BotFather).
 *Telegram Bot HTTP API Access Token* looks something like this `7734627368:TTTT7gHGG878d87987Dhgh7687_6ghjghgj`.
-*Telegram Bot HTTP API Access Token* should be assigned to `ASTROBOT_API_KEY_TG` in `.env`.
+*Telegram Bot HTTP API Access Token* should be assigned to `TELEGRAM_BOT_API_KEY` in `.env`.
 
 [This link](https://stackoverflow.com/questions/32423837/telegram-bot-how-to-get-a-group-chat-id) will help you to get **Telegram Group Chat ID** after you've created a bot, a group and added bot to a group as any other member.
 **Telegram Group Chat ID** looks something like this `-7859788435839`.
-**Telegram Group Chat ID** should be assigned to `ASTRO_CHAT_ID_TG` in `.env`.
+**Telegram Group Chat ID** should be assigned to `TELEGRAM_CHAT_ID` in `.env`.
 
 In `.env` you may configure:
 

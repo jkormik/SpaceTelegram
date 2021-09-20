@@ -14,7 +14,7 @@ def download_picture(picture_url, picture_path, **kwargs):
         file.write(response.content)
 
 
-def get_format_from_link(link):
+def get_file_format_from_link(link):
     unquoted = unquote(link)
     parsed = urlparse(unquoted)
     splited_path = os.path.split(parsed.path)
