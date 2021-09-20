@@ -10,7 +10,7 @@ def download_picture(picture_url, picture_path, **params):
     filename = splited_path[-1]
     response = requests.get(picture_url, params=params)
     response.raise_for_status()
-    with open(picture_path+"/"+filename, "wb") as file:
+    with open(f"{picture_path}/{filename}", "wb") as file:
         file.write(response.content)
 
 
