@@ -17,6 +17,5 @@ def download_picture(picture_url, picture_path, **params):
 def get_file_format_from_link(link):
     unquoted = unquote(link)
     parsed = urlparse(unquoted)
-    splited_path = os.path.split(parsed.path)
-    splited_tail = os.path.splitext(splited_path[-1])
-    return splited_tail[-1]
+    splited_parsed_path = os.path.splitext(parsed.path)
+    return splited_parsed_path[-1]
