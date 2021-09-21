@@ -35,5 +35,5 @@ def fetch_nasa_epics(picture_path,
     response.raise_for_status()
     for epic_features in response.json():
         link_to_epic = form_nasa_epic_link(epic_features["image"],
-                                              date_for_epic)
+                                           date_for_epic)
         download_picture(link_to_epic, picture_path, api_key=nasa_api_key)
