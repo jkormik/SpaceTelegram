@@ -12,10 +12,3 @@ def download_picture(picture_url, picture_path, **params):
     response.raise_for_status()
     with open(f"{picture_path}/{filename}", "wb") as file:
         file.write(response.content)
-
-
-def get_file_format_from_link(link):
-    unquoted = unquote(link)
-    parsed = urlparse(unquoted)
-    splited_parsed_path = os.path.splitext(parsed.path)
-    return splited_parsed_path[-1]

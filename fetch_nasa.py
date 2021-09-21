@@ -1,5 +1,6 @@
 import requests
-from aiding_functions import download_picture, get_file_format_from_link
+from link_processing import get_file_format_from_link
+from data_collection import download_picture
 
 
 def fetch_nasa_apods(picture_path,
